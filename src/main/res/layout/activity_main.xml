@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="cn.edu.lnu.letthecarrun.MainActivity">
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_below="@+id/key"
+        android:text="TextView" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:id="@+id/connButton"
+        android:onClick="onClickConn"
+        android:text="@string/conn_button_text"/>
+    <TableLayout
+        android:layout_width="wrap_content"
+        android:id="@+id/key"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/connButton"
+        android:layout_centerHorizontal="true" >
+
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            <ImageButton
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:id="@+id/LeftUpButton"
+                android:onClick="onClickLeft"
+                android:src="@drawable/button_left_up_bg"
+                android:background="#00ffffff"
+                android:scaleType="fitCenter"
+                >
+
+            </ImageButton>
+
+            <ImageButton
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:scaleType="fitCenter"
+                android:id="@+id/upButton"
+                android:onClick="onClickUp"
+                android:src="@drawable/button_up_bg"
+                android:background="#00ffffff">
+            </ImageButton>
+            <ImageButton
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/button_rght_up_bg"
+                android:onClick="onClickRight"
+                android:background="#00ffffff"
+                android:scaleType="fitCenter"
+                android:id="@+id/RightUpButton"
+                />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            <ImageButton
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:scaleType="fitCenter"
+                android:id="@+id/leftButon"
+                android:onClick="onClickLeft"
+                android:visibility="invisible"
+                android:src="@drawable/button_left_bg"
+                android:background="#00ffffff">
+                ></ImageButton>
+            <ImageButton
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/stop"
+                android:background="#00ffffff"
+                android:onClick="onClickStop"
+                android:id="@+id/stopButton"
+                android:scaleType="fitCenter"
+                />
+            <ImageButton
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:scaleType="fitCenter"
+                android:id="@+id/rightButton"
+                android:onClick="onClickRight"
+                android:src="@drawable/button_rght_bg"
+                android:visibility="invisible"
+                android:background="#00ffffff">
+                ></ImageButton>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            <ImageButton
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:id="@+id/LeftDownButton"
+                android:onClick="onClickLeftDown"
+                android:src="@drawable/button_left_down_bg"
+                android:background="#00ffffff"
+                android:scaleType="fitCenter"
+                />
+            <ImageButton
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:scaleType="fitCenter"
+                android:id="@+id/downButton"
+                android:onClick="onClickDown"
+                android:src="@drawable/button_down_bg"
+                android:background="#00ffffff">
+                ></ImageButton>
+            <ImageButton
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/button_rght_down_bg"
+                android:onClick="onClickRightDown"
+                android:id="@+id/RightDownButton"
+                android:background="#00ffffff"
+                android:scaleType="fitCenter"
+                />
+        </TableRow>
+
+    </TableLayout>
+</RelativeLayout>
