@@ -35,29 +35,17 @@ import java.util.Set;
 import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity {
+    //HC05蓝牙小车使用的UUID，以确保可以和小车正确匹配链接
     public static final UUID MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
 
     private ImageButton upButton, leftButton, rightButton, downButton, leftDownButton, rightDownButton;
     private ImageButton stopButton;
-    private BluetoothAdapter BA;
-    private Set<BluetoothDevice> pairedDevices;
     BluetoothAdapter mBluetoothAdapter = null;
     BluetoothDevice device;
-    BluetoothDevice remoteDevice;
     String TAG = "client";
     TextView output;
 
     private BluetoothSocket socket = null;
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    private GoogleApiClient client;
-    //Button btn_start, btn_device;
-
-    public MainActivity() {
-
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,13 +68,8 @@ public class MainActivity extends AppCompatActivity {
         if (mBluetoothAdapter == null) {
             // Device does not support Bluetooth
             output.append("No bluetooth device.\n");
-            //btn_start.setEnabled(false);
-            //btn_device.setEnabled(false);
         }
         Log.v(TAG, "bluetooth");
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
     public void onClickConn(View view) {
@@ -143,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
 
     });
 
-
+    //寻找附近可配对的所有蓝牙设备
     public void querypaired() {
         Set<BluetoothDevice> pairedDevices = mBluetoothAdapter.getBondedDevices();
         // If there are paired devices

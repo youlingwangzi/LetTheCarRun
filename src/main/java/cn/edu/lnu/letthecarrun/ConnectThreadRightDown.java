@@ -16,6 +16,7 @@ import java.io.PrintWriter;
 
 /**
  * Created by yuanx on 2016/7/13.
+ * 右后退信息发送线程
  */
 
 public class ConnectThreadRightDown extends Thread {
@@ -26,43 +27,15 @@ public class ConnectThreadRightDown extends Thread {
 
     public ConnectThreadRightDown(BluetoothDevice device,Handler handler, BluetoothAdapter mBluetoothAdapter, BluetoothSocket socket) {
         mmDevice = device;
-        BluetoothSocket tmp = null;
         this.handler = handler;
         this.mBluetoothAdapter = mBluetoothAdapter;
         this.socket =socket;
-
-        // Get a BluetoothSocket for a connection with the
-        // given BluetoothDevice
-/*        try {
-            tmp = device.createRfcommSocketToServiceRecord(MainActivity.MY_UUID);
-        } catch (IOException e) {
-            mkmsg("Client connection failed: "+e.getMessage()+"\n");
-        }*/
-        socket = tmp;
-
     }
 
     public void run() {
         mkmsg("Client running\n");
         // Always cancel discovery because it will slow down a connection
         mBluetoothAdapter.cancelDiscovery();
-
-        // Make a connection to the BluetoothSocket
-/*        try {
-            // This is a blocking call and will only return on a
-            // successful connection or an exception
-            socket.connect();
-        } catch (IOException e) {
-            mkmsg("Connect failed\n");
-            try {
-                socket.close();
-                socket = null;
-            } catch (IOException e2) {
-                mkmsg("unable to close() socket during connection failure: "+e2.getMessage()+"\n");
-                socket = null;
-            }
-            // Start the service over to restart listening mode
-        }*/
         // If a connection was accepted
         if (socket != null) {
             mkmsg("Connection made\n");
@@ -74,24 +47,9 @@ public class ConnectThreadRightDown extends Thread {
                 out.print((char)0x04);
                 out.flush();
                 mkmsg("Message sent...\n");
-
-                mkmsg("Attempting to receive a message ...\n");
-                BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                String str = in.readLine();
-                mkmsg("received a message:\n" + str+"\n");
-
-
-
-                mkmsg("We are done, closing connection\n");
             } catch(Exception e) {
                 mkmsg("Error happened sending/receiving\n");
 
-            } finally {
-/*                try {
-                    socket.close();
-                } catch (IOException e) {
-                    mkmsg("Unable to close socket"+e.getMessage()+"\n");
-                }*/
             }
         } else {
             mkmsg("Made connection, but socket is null\n");
@@ -99,16 +57,6 @@ public class ConnectThreadRightDown extends Thread {
         mkmsg("Client ending \n");
 
     }
-
-
-    public void cancel() {
-        try {
-            socket.close();
-        } catch (IOException e) {
-            mkmsg( "close() of connect socket failed: "+e.getMessage() +"\n");
-        }
-    }
-
 
     public void mkmsg(String str) {
         //handler junk, because thread can't update screen!
